@@ -2,12 +2,12 @@
 
 Set of automated actions, which will bucket maintainer ever need to save time managing issues / pull requets. Using `stable` tag instead of specific version is highly recommended.
 
-For better/native implementation using Windows image refer to [stable-win](https://github.com/Ash258/Scoop-GithubActions/tree/stable-win)/[main-win](https://github.com/Ash258/Scoop-GithubActions/tree/main-win) branches.
+For better/native implementation using Windows image refer to [stable-win](https://github.com/ScoopInstaller/Scoop-GithubActions/tree/stable-win)/[main-win](https://github.com/ScoopInstaller/Scoop-GithubActions/tree/main-win) branches.
 Linux based actions are no longer supported and maintained.
 
 ## Available actions
 
-`GITH_EMAIL` environment is not required since [1.0.1](https://github.com/Ash258/Scoop-GithubActions/releases/tag/1.0.1), but it is recommended.
+`GITH_EMAIL` environment is not required since [1.0.1](https://github.com/ScoopInstaller/Scoop-GithubActions/releases/tag/1.0.1), but it is recommended.
 If email is not specified commits will not be pushed using your account, which will not add contributions. ([See](https://github.com/phips28/gh-action-bump-version/commit/adda5b22b3c785eb69d328f91dadb49a4c34a82e))
 
 ### Excavator (`Excavator`)
@@ -94,7 +94,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Excavate
-      uses: Ash258/Scoop-GithubActions@stable
+      uses: ScoopInstaller/Scoop-GithubActions@stable
       env:
         GITH_EMAIL: youremail@mail.com
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -112,7 +112,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: IssueHandler
-      uses: Ash258/Scoop-GithubActions@stable
+      uses: ScoopInstaller/Scoop-GithubActions@stable
       if: github.event.action == 'opened' || (github.event.action == 'labeled' && contains(github.event.issue.labels.*.name, 'verify'))
       env:
         GITH_EMAIL: youremail@mail.com # Not needed, but recommended
@@ -130,7 +130,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: PullRequestHandler
-      uses: Ash258/Scoop-GithubActions@stable
+      uses: ScoopInstaller/Scoop-GithubActions@stable
       if: startsWith(github.event.comment.body, '/verify')
       env:
         GITH_EMAIL: youremail@mail.com # Not needed, but recommended
@@ -148,7 +148,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: PullRequestHandler
-      uses: Ash258/Scoop-GithubActions@stable
+      uses: ScoopInstaller/Scoop-GithubActions@stable
       env:
         GITH_EMAIL: youremail@mail.com # Not needed, but recommended
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -176,4 +176,3 @@ Execute `docker run -ti (((docker build -q .) -split ':')[1])` or `docker build 
 # Alternative
 
 The alternative of this repository for [Shovel](https://github.com/Ash258/Scoop-Core) is <https://github.com/shovel-org/GithubActions>
-
