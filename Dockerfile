@@ -1,11 +1,11 @@
 FROM mcr.microsoft.com/powershell:6.2.3-alpine-3.8
 
 LABEL name="Scoop Bucket Minion" \
-    maintainer="Jakub <Ash258> Čábera <cabera.jakub@gmail.com>" \
+    maintainer="ScoopInstaller <https://github.com/ScoopInstaller>" \
     description="Universal image for scoop bucket automatization used in Github Actions." \
-    url="https://github.com/Ash258/Scoop-GithubActions" \
-    repository="https://github.com/Ash258/Scoop-GithubActions" \
-    homepage="https://github.com/Ash258/Scoop-GithubActions" \
+    url="https://github.com/ScoopInstaller/Scoop-GithubActions" \
+    repository="https://github.com/ScoopInstaller/Scoop-GithubActions" \
+    homepage="https://github.com/ScoopInstaller/Scoop-GithubActions" \
     com.github.actions.name="Bucket Minion" \
     com.github.actions.description="Set of actions to automate maintaining of bucket." \
     com.github.actions.icon="package" \
@@ -17,7 +17,7 @@ ENV SCOOP_DEBUG 1
 
 RUN apk add --no-cache --virtual .scoop-deps openssh git p7zip aria2 \
     && apk add hub --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing \
-    && git clone 'https://github.com/lukesampson/scoop.git' ${SCOOP_HOME}
+    && git clone 'https://github.com/ScoopInstaller/Scoop.git' ${SCOOP_HOME}
 
 COPY Entrypoint.ps1 /
 COPY src /src

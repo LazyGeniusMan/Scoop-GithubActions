@@ -1,8 +1,8 @@
-# Github actions for scoop buckets
+# Github Actions for Scoop buckets
 
-Set of automated actions, which will bucket maintainer ever need to save time managing issues / pull requets. Using `stable` tag instead of specific version is highly recommended.
+Set of automated actions, which bucket maintainers can use to save time managing issues / pull requests.
 
-For better/native implementation using Windows image refer to [stable-win](https://github.com/ScoopInstaller/Scoop-GithubActions/tree/stable-win)/[main-win](https://github.com/ScoopInstaller/Scoop-GithubActions/tree/main-win) branches.
+For better/native implementation using Windows image refer to [main](https://github.com/ScoopInstaller/Scoop-GithubActions/tree/main) branch.
 Linux based actions are no longer supported and maintained.
 
 ## Available actions
@@ -20,8 +20,8 @@ If email is not specified commits will not be pushed using your account, which w
 
 ### Issues (`Issues`)
 
-As soon as new issue **is created** or **label `verify` is added** into issue, action is executed.
-Based on issue title, specific sub-action is executed. It could be one of these:
+As soon as a new issue **is created** or the **label `verify` is added** to an issue, the action is executed.
+Based on the issue title, a specific sub-action is executed. It could be one of these:
 
 - **Hash check fails**
     1. Checkhashes binary is executed
@@ -55,7 +55,7 @@ Based on issue title, specific sub-action is executed. It could be one of these:
 
 ### Pull requests (`Pull requests | PullRequestHandler`)
 
-As soon as **PR is created** or **someone post comment `/verify`** set of these tests are executed:
+As soon as a PR **is created** or the **comment `/verify` is posted** to it, validation tests are executed (see [wiki](https://github.com/Ash258/Scoop-GithubActions/wiki/Pull-Request-Checks) for detailed desciption):
 
 - ❗❗ [Pull request created from forked repository cannot be finished due to different permission scope of token](https://github.com/Ash258/Scoop-GithubActions/issues/42) ❗❗
     - Manual `/verify` comment is needed
@@ -94,7 +94,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Excavate
-      uses: ScoopInstaller/Scoop-GithubActions@stable
+      uses: ScoopInstaller/Scoop-GithubActions@main-lin
       env:
         GITH_EMAIL: youremail@mail.com
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -112,7 +112,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: IssueHandler
-      uses: ScoopInstaller/Scoop-GithubActions@stable
+      uses: ScoopInstaller/Scoop-GithubActions@main-lin
       if: github.event.action == 'opened' || (github.event.action == 'labeled' && contains(github.event.issue.labels.*.name, 'verify'))
       env:
         GITH_EMAIL: youremail@mail.com # Not needed, but recommended
@@ -130,7 +130,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: PullRequestHandler
-      uses: ScoopInstaller/Scoop-GithubActions@stable
+      uses: ScoopInstaller/Scoop-GithubActions@main-lin
       if: startsWith(github.event.comment.body, '/verify')
       env:
         GITH_EMAIL: youremail@mail.com # Not needed, but recommended
@@ -148,7 +148,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: PullRequestHandler
-      uses: ScoopInstaller/Scoop-GithubActions@stable
+      uses: ScoopInstaller/Scoop-GithubActions@main-lin
       env:
         GITH_EMAIL: youremail@mail.com # Not needed, but recommended
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
