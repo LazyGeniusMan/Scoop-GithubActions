@@ -10,7 +10,7 @@ Linux based actions are no longer supported and maintained.
 `USER_EMAIL` environment is not required since [1.0.1](https://github.com/ScoopInstaller/Scoop-GithubActions/releases/tag/1.0.1), but it is recommended.
 If email is not specified commits will not be pushed using your account, which will not add contributions (like [here](https://github.com/phips28/gh-action-bump-version/commit/adda5b22b3c785eb69d328f91dadb49a4c34a82e)).
 
-`USER_NAME` is also optional.
+`USER_NAME` and `SCOOP_BRANCH` are also optional.
 
 ### Excavator (`Excavator`)
 

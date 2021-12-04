@@ -1,6 +1,6 @@
 name: Bucket Minion
 description: Set of actions to automate maintaining of bucket.
-author: Jakub <Ash258> Čábera
+author: ScoopInstaller Maintainers
 runs:
     using: docker
     image: Dockerfile

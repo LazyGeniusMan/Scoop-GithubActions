@@ -1,5 +1,11 @@
 $ErrorActionPreference = 'Stop' # Stop immediately on error, this will not lead into unwated comments.
 
+if ($env:SCOOP_BRANCH) {
+    Push-Location $env:SCOOP_HOME
+    git checkout $env:SCOOP_BRANCH
+    Pop-Location
+}
+
 # Import all modules
 Join-Path $PSScriptRoot 'src' | Get-ChildItem -File | Select-Object -ExpandProperty Fullname | Import-Module
 
